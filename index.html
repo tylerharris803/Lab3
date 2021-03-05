@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <title>XKCD Browser</title>
+</head>
+
+<body>
+  <h1>XKCD Browser</h1>
+
+  <div id="app">
+    <div v-if="loading">
+      <p>Loading...</p>
+    </div>
+    <div v-else>
+      <p>
+        <button v-on:click="firstComic">First</button>
+        <button v-on:click="previousComic">Previous</button>
+        <button v-on:click="nextComic">Next</button>
+        <button v-on:click="randomComic">Random</button>
+        <button v-on:click="lastComic">Last</button>
+      </p>
+      <h2>{{current.safe_title}}</h2>
+      <img v-bind:src="current.img" v-bind:alt="current.alt">
+      <p>{{current.alt}}</p>
+      <p><i>#{{current.num}}, drawn on {{current.day}} {{month}} {{current.year}}</i></p>
+
+      <star-rating @rating-selected ="setRating"></star-rating>
+      <p>Average Rating: {{average}}</p>
+
+      <h3>Add a Comment</h3>
+      <form v-on:submit.prevent="addComment">
+        <input v-model="addedName" placeholder="Name"></p>
+        <textarea v-model="addedComment"></textarea>
+        <br />
+        <button type="submit">Comment</button>
+      </form>
+      <h3>Comments</h3>
+      <div v-for="comment in comments[number]">
+        <hr>
+        <p>{{comment.text}}</p>
+        <p><i>-- {{comment.author}}</i></p>
+        <p>{{comment.date}}</p>
+      </div>
+    </div>
+  </div>
+  <p></p>
+  <div class='footer'>
+  <div class='footer-item footer-one'></div>
+  <div class='footer-item footer-two'>
+     <p class='footer-text'>Github repository: </p>
+      <p class= 'footer-text'> https://github.com/BYU-CS-260-Winter-2021/lab-3a-vue-xkcd-browser-tylerharris803 --- Click <a href='https://github.com/BYU-CS-260-Winter-2021/lab-3a-vue-xkcd-browser-tylerharris803'>here</a> to go to the Github repository.</p>
+  </div>
+  <div class='footer-item footer-three'></div>
+</div>
+
+  <script src="https://unpkg.com/vue-star-rating/dist/VueStarRating.umd.min.js"></script>`
+  <script src="https://momentjs.com/downloads/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/script.js"></script>
+</body>
+
+</html>
